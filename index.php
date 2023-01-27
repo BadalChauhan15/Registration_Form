@@ -15,7 +15,7 @@
     <?php
 
         include 'connection.php';
-        // define variables and set to empty values
+        
         $genderErr = $firstnameErr = $lastnameErr = $countrycodeErr = $mobilenumberErr = $emailErr = $stateErr = $cityErr = $pincodeErr = $passwordErr = $confirmpasswordErr = $dobErr = $highesteducationErr = $programminglanguageErr = $percentageErr = $passingyearErr = $bioErr = $documentErr = "";
 
         $gender = $firstname = $lastname = $countrycode = $mobilenumber = $email = $state = $city = $pincode = $password = $confirmpassword = $dob = $highesteducation = $programminglanguage = $percentage = $passingyear = $bio = $document = "";
