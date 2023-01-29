@@ -194,18 +194,32 @@
                 
                 if($stmt->execute()){
                     
-                    $to = "recipient@example.com";
+                    $to = $_POST['email'];
                     $subject = "Registration Form Submission";
                     $message = "Thank you for submitting your registration form. We will get back to you soon.";
-                    $headers = "From: no-reply@example.com" . "\r\n" .
-                    "CC: cc@example.com";
+                    
+                    include('smtp/PHPMailerAutoload.php');
 
-                    ini_set("SMTP", "smtp.example.com");
-                    ini_set("smtp_port", 587);
+	                $mail=new PHPMailer();
+                    $mail->SMTPDebug  = 1;
+	                $mail->isSMTP();
+                    $mail->SMTPAuth=true;
+                    $mail->SMTPSecure = 'tls';
+	                $mail->Host="smtp.sendgrid.net";
+	                $mail->Port=587;
+                    $mail->IsHTML(true);
+                    $mail->CharSet = 'UTF-8';
+	                $mail->Username="apikey";
+	                $mail->Password="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";
+	                $mail->SetFrom("fayired836@chotunai.com");
+	                $mail->Subject= $subject;
+	                $mail->Body= $message;
+                    $mail->addAddress($to);
 
-                    if(mail($to, $subject, $message, $headers)){
+                    if($mail->send()){
                         echo '<script>alert("Email sent successfully")</script>';
-                    }else{
+                    }
+                    else{
                         echo '<script>alert("Error: Email not sent")</script>';
                     }
 
